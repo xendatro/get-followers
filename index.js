@@ -1,11 +1,14 @@
 const express = require('express');
 const axios = require('axios');
 const res = require('express/lib/response');
+const bodyParser = require('body-parser')
 
 
 const app = express();
 const port = 3000;
 // Route to check if user is following IDs
+app.use(bodyParser.json())
+
 
 async function getFollowing(id) {
   let following = []
@@ -31,9 +34,9 @@ async function getFollowing(id) {
 }
 app.post('/followers', async (req, res) => {
   const following = {
-    data: await getFollowing(1936118388)
+
+    data: await getFollowing(req.body.id)
   }
-  console.log(following)
   res.json(following)
 });
 
