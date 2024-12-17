@@ -28,7 +28,6 @@ async function getFollowing(id) {
     }
     
   } catch (error) {
-    console.error(error);
   }
   return following
 }
