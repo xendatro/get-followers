@@ -33,11 +33,16 @@ async function getFollowing(id) {
   return following
 }
 app.post('/followers', async (req, res) => {
-  const following = {
-
-    data: await getFollowing(req.body.id)
+  try {
+    const following = {
+      data: await getFollowing(req.body.id)
+    }
+    res.json(following)
+  } catch (error) {
+    res.json({
+      data: []
+    })
   }
-  res.json(following)
 });
 
 app.listen(port, () => {
